@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>pSEO Universal Template — Self-Inking Brand Product Pages | StampStore</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#C8102E;
+  --dark:#0d1117;
+  --panel:#161b22;
+  --border:#30363d;
+  --blue:#4a9eff;
+  --green:#69db7c;
+  --amber:#f0a500;
+  --danger:#f85149;
+  --muted:#8b949e;
+  --text:#f0f6fc;
+  --subtext:#c9d1d9;
+}
+body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--text);font-size:14px;line-height:1.6;min-height:100vh}
+code,pre,monospace,.mono{font-family:'JetBrains Mono',monospace}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* TOP HEADER */
+.page-header{background:#1a1a2e;border-bottom:2px solid #252545;padding:20px 24px}
+.page-header .container{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.header-left{display:flex;align-items:center;gap:14px}
+.logo-mark{background:var(--red);color:#fff;font-size:11px;font-weight:800;padding:6px 10px;border-radius:4px;letter-spacing:0.5px;line-height:1.2;text-align:center}
+.page-title{font-size:17px;font-weight:700;color:#fff;line-height:1.2}
+.page-subtitle{font-size:11px;color:var(--muted);margin-top:2px}
+.scope-badge{background:var(--red);color:#fff;font-size:9px;font-weight:700;padding:4px 10px;border-radius:3px;letter-spacing:0.7px;text-transform:uppercase;white-space:nowrap}
+.back-link{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:5px}
+.back-link:hover{color:var(--blue)}
+
+/* NAV TABS */
+.tab-nav{background:#161b22;border-bottom:1px solid var(--border);padding:0 24px;position:sticky;top:0;z-index:100}
+.tab-nav .container{max-width:1100px;margin:0 auto;display:flex;gap:0}
+.tab{font-size:12px;font-weight:500;color:var(--muted);padding:12px 16px;border-bottom:2px solid transparent;cursor:pointer;transition:all 0.15s;white-space:nowrap}
+.tab:hover{color:var(--subtext)}
+.tab.active{color:var(--blue);border-bottom-color:var(--blue)}
+
+/* CONTENT */
+.content{max-width:1100px;margin:0 auto;padding:32px 24px}
+.section{margin-bottom:40px}
+.section-title{font-size:13px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* CARDS */
+.card{background:var(--panel);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.card-header{padding:12px 16px;border-bottom:1px solid var(--border);font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase}
+.card-body{padding:16px}
+
+/* SSR COMPARISON */
+.ssr-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ssr-panel{border-radius:6px;padding:14px 16px;font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.9}
+.ssr-panel.wrong{background:#1a0000;border:1px solid #5a1a1a}
+.ssr-panel.right{background:#001a00;border:1px solid #1a5a1a}
+.ssr-label{font-family:'Poppins',sans-serif;font-size:10px;font-weight:700;margin-bottom:8px}
+.ssr-label.wrong{color:#ff6b6b}
+.ssr-label.right{color:var(--green)}
+.token-bad{color:#ff6b6b}
+.token-good{color:var(--green)}
+.ssr-verdict{font-weight:700;margin-top:8px}
+.ssr-verdict.bad{color:#ff6b6b}
+.ssr-verdict.good{color:var(--green)}
+
+/* IMPLEMENTATION BLOCK */
+.impl-block{background:#0d1117;border:1px solid var(--border);border-radius:6px;padding:14px 16px;font-size:11.5px;line-height:2}
+.impl-stack{color:var(--blue)}
+.impl-code{color:#a5d6ff}
+.impl-never{color:var(--danger);font-weight:700}
+
+/* VARIABLE TABLE */
+.var-table{width:100%;border-collapse:collapse;font-size:12px}
+.var-table th{padding:10px 14px;text-align:left;font-weight:700;color:var(--subtext);background:#1a1a2e;border-bottom:2px solid var(--border);font-size:11px;text-transform:uppercase;letter-spacing:0.4px}
+.var-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+.var-table tr:last-child td{border-bottom:none}
+.var-table tr:hover td{background:rgba(255,255,255,0.02)}
+.var-pill{color:var(--red);font-weight:700;background:#1a0505;border:1px solid #5a1515;border-radius:3px;padding:2px 7px;font-family:'JetBrains Mono',monospace;font-size:11px;white-space:nowrap}
+.sample-val{color:#69db7c;font-weight:600;font-family:'JetBrains Mono',monospace;font-size:11px}
+.type-badge{background:#1a1a2e;color:var(--muted);font-size:10px;padding:2px 6px;border-radius:3px;font-family:'JetBrains Mono',monospace}
+.used-in{color:var(--muted);font-size:11.5px}
+.tfoot-row td{padding:10px 14px;font-size:11.5px}
+
+/* META SECTION */
+.serp-preview{background:#fff;border-radius:8px;padding:16px 18px;max-width:620px;margin-bottom:16px}
+.serp-url{font-size:12px;color:#666;font-family:'JetBrains Mono',monospace;margin-bottom:4px}
+.serp-title{font-size:19px;color:#1a0dab;font-weight:500;line-height:1.3;margin-bottom:3px;font-family:'Poppins',sans-serif}
+.serp-desc{font-size:13px;color:#444;line-height:1.55;font-family:'Poppins',sans-serif}
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.meta-card{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:12px 14px}
+.meta-card-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--muted);margin-bottom:8px}
+.meta-template{font-size:11.5px;color:var(--red);line-height:1.7;word-break:break-all;font-family:'JetBrains Mono',monospace}
+.char-row{display:flex;gap:14px;margin-top:8px;font-size:10.5px}
+.char-ok{color:var(--green);font-weight:600}
+.char-limit{color:var(--muted)}
+.meta-note{font-size:10.5px;color:var(--muted);margin-top:6px;line-height:1.5}
+
+/* HARDCODED ROW */
+.hardcoded-row{background:#111800;border-top:2px solid #2a3000;padding:10px 14px;font-size:11.5px;color:#a0b040}
+.hardcoded-row strong{color:#d4e840}
+.warning-row{background:#1a0505;border-top:1px solid #5a1515;padding:10px 14px;font-size:11.5px;color:var(--red);font-weight:600}
+
+/* REPO NAV */
+.repo-nav{background:#1a1a2e;border-top:2px solid #252545;padding:20px 24px;margin-top:0}
+.repo-nav .container{max-width:1100px;margin:0 auto}
+.repo-nav-label{font-size:9px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--blue);margin-bottom:12px;font-family:'JetBrains Mono',monospace}
+.repo-cards{display:flex;gap:12px;flex-wrap:wrap}
+.repo-card{display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:12px 16px;text-decoration:none;flex:1;min-width:200px;transition:border-color 0.15s}
+.repo-card:hover{border-color:var(--blue);text-decoration:none}
+.repo-card.current{border-color:#4a9eff55;background:#0d1f2e}
+.repo-card-icon{font-size:20px;line-height:1;flex-shrink:0}
+.repo-card-name{font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px}
+.repo-card-file{font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.repo-card-desc{font-size:10px;margin-top:3px}
+.repo-card-desc.blue{color:var(--blue)}
+.repo-card-desc.green{color:var(--green)}
+.repo-card-desc.amber{color:var(--amber)}
+.credit{margin-top:10px;font-size:10px;color:#484f58;font-family:'JetBrains Mono',monospace}
+
+@media(max-width:700px){
+  .ssr-grid,.meta-grid{grid-template-columns:1fr}
+  .repo-cards{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="container">
+    <div class="header-left">
+      <div class="logo-mark">pSEO<br>DOCS</div>
+      <div>
+        <div class="page-title">pSEO Universal Template</div>
+        <div class="page-subtitle">stamps.net.au — Variable Reference · SSR Rules · Meta Spec</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <span class="scope-badge">Self-Inking Brand Product Pages Only</span>
+      <a href="stampstore-pseo-template-universal.html" class="back-link">← Back to Index</a>
+    </div>
+  </div>
+</div>
+
+<!-- TAB NAV -->
+<div class="tab-nav">
+  <div class="container">
+    <div class="tab active">⚙️ SSR Rendering</div>
+    <div class="tab">🏷️ Variables</div>
+    <div class="tab">🔍 Meta Spec</div>
+    <div class="tab">📐 Page Structure</div>
+    <div class="tab">🔗 Repo Files</div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- ==============================
+       SECTION 1 — SSR RENDERING
+       ============================== -->
+  <div class="section">
+    <div class="section-title">⚙️ Rendering Requirement — Server-Side Only</div>
+
+    <div class="ssr-grid" style="margin-bottom:16px">
+      <div>
+        <div class="ssr-label wrong">❌ WRONG — CSR / Client-Side Render</div>
+        <div class="ssr-panel wrong">
+          <span style="color:#555">&lt;!-- Raw HTML Googlebot crawls --&gt;</span><br>
+          &lt;title&gt;<span class="token-bad">{{category_name}}</span> | Buy Online...&lt;/title&gt;<br>
+          &lt;meta name="description" content="Shop <span class="token-bad">{{category_name}}</span>..."&gt;<br>
+          &lt;h1&gt;<span class="token-bad">{{category_name}}</span>&lt;/h1&gt;<br>
+          &lt;p&gt;...from <span class="token-bad">{{min_price}}</span>, choose from <span class="token-bad">{{total_products_count}}</span>...&lt;/p&gt;<br><br>
+          <span class="ssr-verdict bad">→ Googlebot sees empty shells.<br>→ Indexed as thin / duplicate content.<br>→ pSEO strategy fails entirely.</span>
+        </div>
+      </div>
+      <div>
+        <div class="ssr-label right">✅ CORRECT — SSR / Pre-rendered HTML</div>
+        <div class="ssr-panel right">
+          <span style="color:#555">&lt;!-- Raw HTML Googlebot crawls --&gt;</span><br>
+          &lt;title&gt;<span class="token-good">DF Self Inking Rubber Stamps</span> | Buy Online...&lt;/title&gt;<br>
+          &lt;meta name="description" content="Shop <span class="token-good">DF Self Inking Rubber Stamps</span>..."&gt;<br>
+          &lt;h1&gt;<span class="token-good">DF Self Inking Rubber Stamps</span>&lt;/h1&gt;<br>
+          &lt;p&gt;...from <span class="token-good">$30.00</span>, choose from <span class="token-good">31</span>...&lt;/p&gt;<br><br>
+          <span class="ssr-verdict good">→ Googlebot reads full content.<br>→ Each page indexed as unique.<br>→ pSEO strategy executes correctly.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="impl-block">
+      <span style="color:var(--amber);font-weight:700;font-family:'Poppins',sans-serif;display:block;margin-bottom:8px">How variables must be injected — by stack:</span>
+      <span class="impl-stack">PHP / Laravel &nbsp;&nbsp;&nbsp;&nbsp;</span><span class="impl-code">echo str_replace('{{category_name}}', $product->category_name, $template);</span><br>
+      <span class="impl-stack">Blade template &nbsp;&nbsp;</span><span class="impl-code">{{ $product->category_name }}</span> — resolves server-side before HTML sent to browser<br>
+      <span class="impl-stack">Next.js &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="impl-code">getServerSideProps()</span> or <span class="impl-code">generateStaticParams()</span> — never <span style="color:var(--danger)">useEffect</span> or client fetch<br>
+      <span class="impl-stack">WordPress &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="impl-code">the_title() / get_post_meta()</span> — in PHP template file, not JS<br><br>
+      <span class="impl-never">Never inject pSEO content via: </span><span style="color:var(--muted)">fetch() on mount · useEffect · document.innerHTML · React state on load · any JS running after DOMContentLoaded</span>
+    </div>
+  </div>
+
+  <!-- ==============================
+       SECTION 2 — VARIABLE REFERENCE
+       ============================== -->
+  <div class="section">
+    <div class="section-title">🏷️ Variable Reference — All 10 Dynamic Fields</div>
+
+    <div class="card">
+      <table class="var-table">
+        <thead>
+          <tr>
+            <th style="width:22%">Variable</th>
+            <th style="width:22%">Sample Value (DF Page)</th>
+            <th style="width:10%">Type</th>
+            <th>Used In</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="var-pill">{{category_name}}</span></td>
+            <td><span class="sample-val">DF Self Inking Rubber Stamps</span></td>
+            <td><span class="type-badge">String</span></td>
+            <td class="used-in">H1, meta title, meta desc, intro para, bullets, LSI H2s, FAQ Qs &amp; As, breadcrumb current</td>
+          </tr>
+          <tr>
+            <td><span class="var-pill">{{short_brand_name}}</span></td>
+            <td><span class="sample-val">DF</span></td>
+            <td><span class="type-badge">String</span></td>
+            <td class="used-in">Inline body copy, ink formulation reference, refill fluid mention, subnav label</td>
+          </tr>
+          <tr>
+            <td><span class="var-pill">{{min_price}}</span></td>
+            <td><span class="sample-val">$30.00</span></td>
+            <td><span class="type-badge">Currency</span></td>
+            <td class="used-in">Meta desc, intro para, LSI block 4 (address stamp)</td>
+          </tr>
+          <tr>
+            <td><span class="var-pill">{{total_products_count}}</span></td>
+            <td><span class="sample-val">31</span></td>
+            <td><span class="type-badge">Integer</span></td>
+            <td class="used-in">Product count line, intro para, LSI blocks 1 &amp; 2 &amp; 4, FAQ Q1</td>
+          </tr>
+          <tr>
+            <td><span class="var-pill">{{shapes_list}}</span></td>
+            <td><span class="sample-val">round, oval, rectangle, square</span></td>
+            <td><span class="type-badge">String list</span></td>
+            <td class="used-in">Meta desc, intro bullet 1, LSI block 1, FAQ Q1</td>
+          </tr>
+          <tr>
+            <td><span class="var-pill">{{min_width}}</span></td>
+            <td><span class="sample-val">27</span></td>
+            <td><span class="type-badge">Int (mm)</span></td>
+            <td class="used-in">Intro bullet 1, LSI block 2 (personalised stamper)</td>
+          </tr>
+          <tr>
+            <td><span class="var-pill">{{max_width}}</span></td>
+            <td><span class="sample-val">130</span></td>
+            <td><span class="type-badge">Int (mm)</span></td>
+            <td class="used-in">Intro bullet 1, LSI block 2, FAQ Q6 (industrial use)</td>
+          </tr>
+          <tr>
+            <td><span class="var-pill">{{min_lines}}</span></td>
+            <td><span class="sample-val">1</span></td>
+            <td><span class="type-badge">Integer</span></td>
+            <td class="used-in">Intro bullet 1, LSI block 1 (custom rubber stamp), FAQ Q2</td>
+          </tr>
+          <tr>
+            <td><span class="var-pill">{{max_lines}}</span></td>
+            <td><span class="sample-val">20</span></td>
+            <td><span class="type-badge">Integer</span></td>
+            <td class="used-in">Intro bullet 1, LSI block 1 (custom rubber stamp), FAQ Q2</td>
+          </tr>
+          <tr>
+            <td><span class="var-pill">{{url_slug}}</span></td>
+            <td><span class="sample-val">df-self-inking-stamps</span></td>
+            <td><span class="type-badge">Slug</span></td>
+            <td class="used-in">Canonical URL tag, BreadcrumbList schema position 3 item URL</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="hardcoded-row">
+        <strong>Hardcoded on all pages (never variables):</strong> &nbsp;
+        <strong style="color:#d4e840">StampStore</strong> — entity name &nbsp;|&nbsp;
+        <strong style="color:#d4e840">Australia-wide shipping</strong> — trust signal &nbsp;|&nbsp;
+        <strong style="color:#d4e840">Locally assembled in Australia</strong> — brand claim
+      </div>
+      <div class="warning-row">
+        ⚠️ All variables must resolve before page render. Crawlers must never see raw <code style="background:#2a0505;border:1px solid #5a1515;padding:1px 6px;border-radius:3px;font-size:10px">{{token}}</code> strings in HTML source, meta tags, or schema JSON-LD.
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================
+       SECTION 3 — META SPEC
+       ============================== -->
+  <div class="section">
+    <div class="section-title">🔍 Meta Title &amp; Description — pSEO Templates</div>
+
+    <div class="serp-preview">
+      <div class="serp-url">google.com › stamps.net.au › <strong>df-self-inking-stamps</strong></div>
+      <div class="serp-title">DF Self Inking Rubber Stamps | Buy Online | StampStore Australia</div>
+      <div class="serp-desc">Shop DF Self Inking Rubber Stamps at StampStore from $30.00. Choose from 31 custom options — round, oval, rectangle, square shapes, 1–20 lines. Australia-wide shipping.</div>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-card">
+        <div class="meta-card-label">Meta Title — Template</div>
+        <div class="meta-template">{{category_name}} | Buy Online | StampStore Australia</div>
+        <div class="char-row">
+          <span class="char-ok">✓ DF sample: 57 chars</span>
+          <span class="char-limit">Limit: 60 chars</span>
+        </div>
+        <div class="meta-note">If <span class="var-pill" style="font-size:10px">{{category_name}}</span> exceeds ~35 chars, drop "| Buy Online" → use <code style="font-size:10px">{{category_name}} | StampStore Australia</code> to stay under 60.</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-card-label">Meta Description — Template</div>
+        <div class="meta-template">Shop {{category_name}} at StampStore from {{min_price}}. Choose from {{total_products_count}} custom options — {{shapes_list}} shapes, {{min_lines}}–{{max_lines}} lines. Australia-wide shipping.</div>
+        <div class="char-row">
+          <span class="char-ok">✓ DF sample: 153 chars</span>
+          <span class="char-limit">Limit: 155 chars</span>
+        </div>
+        <div class="meta-note">If <span class="var-pill" style="font-size:10px">{{shapes_list}}</span> exceeds 4 values, replace with "multiple shapes" to stay under 155.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================
+       SECTION 4 — PAGE STRUCTURE
+       ============================== -->
+  <div class="section">
+    <div class="section-title">📐 Page Content Structure — Injection Order</div>
+    <div class="card">
+      <div class="card-body" style="padding:0">
+        <table style="width:100%;border-collapse:collapse;font-size:12.5px">
+          <thead>
+            <tr style="background:#1a1a2e;border-bottom:2px solid var(--border)">
+              <th style="padding:10px 14px;text-align:left;color:var(--subtext);font-size:11px;text-transform:uppercase;letter-spacing:0.4px;width:5%">#</th>
+              <th style="padding:10px 14px;text-align:left;color:var(--subtext);font-size:11px;text-transform:uppercase;letter-spacing:0.4px;width:25%">Element</th>
+              <th style="padding:10px 14px;text-align:left;color:var(--subtext);font-size:11px;text-transform:uppercase;letter-spacing:0.4px;width:20%">Position</th>
+              <th style="padding:10px 14px;text-align:left;color:var(--subtext);font-size:11px;text-transform:uppercase;letter-spacing:0.4px">Variables Used</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:9px 14px;color:var(--muted)">1</td>
+              <td style="padding:9px 14px;color:var(--text);font-weight:500">Meta title + description</td>
+              <td style="padding:9px 14px;color:var(--muted)">&lt;head&gt;</td>
+              <td style="padding:9px 14px"><span class="var-pill">{{category_name}}</span> <span class="var-pill">{{min_price}}</span> <span class="var-pill">{{total_products_count}}</span> <span class="var-pill">{{shapes_list}}</span> <span class="var-pill">{{min_lines}}</span> <span class="var-pill">{{max_lines}}</span></td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);background:rgba(255,255,255,0.02)">
+              <td style="padding:9px 14px;color:var(--muted)">2</td>
+              <td style="padding:9px 14px;color:var(--text);font-weight:500">Canonical URL</td>
+              <td style="padding:9px 14px;color:var(--muted)">&lt;head&gt;</td>
+              <td style="padding:9px 14px"><span class="var-pill">{{url_slug}}</span></td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:9px 14px;color:var(--muted)">3</td>
+              <td style="padding:9px 14px;color:var(--text);font-weight:500">Breadcrumb nav + schema</td>
+              <td style="padding:9px 14px;color:var(--muted)">Below subnav</td>
+              <td style="padding:9px 14px"><span class="var-pill">{{category_name}}</span> <span class="var-pill">{{url_slug}}</span></td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);background:rgba(255,255,255,0.02)">
+              <td style="padding:9px 14px;color:var(--muted)">4</td>
+              <td style="padding:9px 14px;color:var(--text);font-weight:500">H1 + product count</td>
+              <td style="padding:9px 14px;color:var(--muted)">Above product grid</td>
+              <td style="padding:9px 14px"><span class="var-pill">{{category_name}}</span> <span class="var-pill">{{total_products_count}}</span></td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:9px 14px;color:var(--muted)">5</td>
+              <td style="padding:9px 14px;color:var(--text);font-weight:500">pSEO intro para + 3 bullets</td>
+              <td style="padding:9px 14px;color:var(--muted)">Above product grid</td>
+              <td style="padding:9px 14px;font-size:11px;color:var(--muted)">All variables</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);background:rgba(255,255,255,0.02)">
+              <td style="padding:9px 14px;color:var(--muted)">6</td>
+              <td style="padding:9px 14px;color:var(--text);font-weight:500">Product grid (filtered)</td>
+              <td style="padding:9px 14px;color:var(--muted)">Main content</td>
+              <td style="padding:9px 14px;color:var(--muted);font-size:11px">Product DB fields — not pSEO variables</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:9px 14px;color:var(--muted)">7</td>
+              <td style="padding:9px 14px;color:var(--text);font-weight:500">4 × LSI content blocks</td>
+              <td style="padding:9px 14px;color:var(--muted)">Below product grid</td>
+              <td style="padding:9px 14px"><span class="var-pill">{{category_name}}</span> <span class="var-pill">{{short_brand_name}}</span> <span class="var-pill">{{min_price}}</span> <span class="var-pill">{{total_products_count}}</span> <span class="var-pill">{{min_lines}}</span> <span class="var-pill">{{max_lines}}</span> <span class="var-pill">{{min_width}}</span> <span class="var-pill">{{max_width}}</span> <span class="var-pill">{{shapes_list}}</span></td>
+            </tr>
+            <tr style="background:rgba(255,255,255,0.02)">
+              <td style="padding:9px 14px;color:var(--muted)">8</td>
+              <td style="padding:9px 14px;color:var(--text);font-weight:500">8 × pFAQ blocks</td>
+              <td style="padding:9px 14px;color:var(--muted)">Bottom of page</td>
+              <td style="padding:9px 14px"><span class="var-pill">{{category_name}}</span> <span class="var-pill">{{short_brand_name}}</span> <span class="var-pill">{{total_products_count}}</span> <span class="var-pill">{{shapes_list}}</span> <span class="var-pill">{{min_lines}}</span> <span class="var-pill">{{max_lines}}</span> <span class="var-pill">{{max_width}}</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- REPO NAV -->
+<div class="repo-nav">
+  <div class="container">
+    <div class="repo-nav-label">📁 pSEO Template Repository — Self-Inking Stamps · stamps.net.au</div>
+    <div class="repo-cards">
+
+      <a href="stampstore-pseo-template-universal.html" class="repo-card">
+        <span class="repo-card-icon">📄</span>
+        <div>
+          <div class="repo-card-name">Universal Template (Index)</div>
+          <div class="repo-card-file">stampstore-pseo-template-universal.html</div>
+          <div class="repo-card-desc blue">pSEO variables + page content + SSR link</div>
+        </div>
+      </a>
+
+      <a href="stampstore-pseo-instructions.html" class="repo-card current">
+        <span class="repo-card-icon">📋</span>
+        <div>
+          <div class="repo-card-name">pSEO Instructions (Current)</div>
+          <div class="repo-card-file">stampstore-pseo-instructions.html</div>
+          <div class="repo-card-desc amber">SSR rules · variable ref · meta spec · page structure</div>
+        </div>
+      </a>
+
+      <a href="stampstore-pseo-template-df-filled.html" class="repo-card">
+        <span class="repo-card-icon">✅</span>
+        <div>
+          <div class="repo-card-name">DF Brand — Filled Sample</div>
+          <div class="repo-card-file">stampstore-pseo-template-df-filled.html</div>
+          <div class="repo-card-desc green">All variables resolved with real DF data</div>
+        </div>
+      </a>
+
+    </div>
+    <div class="credit">Girish Kumar G &nbsp;|&nbsp; Programmatic SEO Manager &nbsp;|&nbsp; Father of SEO</div>
+  </div>
+</div>
+
+</body>
+</html>
